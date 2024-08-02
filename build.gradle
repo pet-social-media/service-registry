@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+    alias(libs.plugins.spring.boot.plugin)
+    alias(libs.plugins.spring.dependency.management.plugin)
+}
+
+group = 'com.enzulode'
+version = '1.0.0-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation platform(libs.spring.cloud.bom)
+    implementation libs.bundles.serviceregistry
+}
+
+tasks.named('test', Test) {
+    useJUnitPlatform()
+}
